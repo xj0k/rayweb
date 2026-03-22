@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# rayweb — raysonxu.com
 
-## Getting Started
+个人网站，基于 Next.js 15 构建。
 
-First, run the development server:
+## 技术栈
+
+- **框架**: Next.js 15 (App Router, 静态导出)
+- **样式**: Tailwind CSS + CSS Variables
+- **动效**: Framer Motion
+- **内容**: Markdown 文件驱动
+- **部署**: Cloudflare Pages
+
+## 本地开发
 
 ```bash
+export PATH="$HOME/.nvm/versions/node/v20.5.0/bin:$PATH"  # 如需切换 Node 版本
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+访问 [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 内容管理
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+内容文件存放在 `src/content/` 目录：
 
-## Learn More
+- `blog/` — 博客文章 (`.md`)
+- `skills/` — AI Skills (`.md`)
+- `projects/` — 项目介绍 (`.md`)
 
-To learn more about Next.js, take a look at the following resources:
+### 新建博客文章
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+在 `src/content/blog/` 创建 `.md` 文件：
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```markdown
+---
+title: "文章标题"
+date: "2026-03-22"
+excerpt: "文章摘要"
+tags: ["标签1", "标签2"]
+---
 
-## Deploy on Vercel
+正文内容...
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 部署到 Cloudflare Pages
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. 推送代码到 GitHub (`xj0k/rayweb`)
+2. 在 Cloudflare Pages 连接 GitHub 仓库，或通过 GitHub Actions 自动部署
+
+GitHub Actions 需要在仓库 Secrets 中配置：
+- `CLOUDFLARE_API_TOKEN` — Cloudflare API Token
+- `CLOUDFLARE_ACCOUNT_ID` — Cloudflare Account ID
+
+构建配置：
+- Build command: `npm run build`
+- Build output directory: `out`
+- Node.js version: `20`
