@@ -9,6 +9,7 @@
     "generate:rss": "tsx scripts/generate-rss.ts",
     "generate:sitemap": "tsx scripts/generate-sitemap.ts",
     "generate": "npm run generate:api && npm run generate:rss && npm run generate:sitemap",
+    "backup": "tsx scripts/backup-content.ts",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:ui": "vitest --ui",
