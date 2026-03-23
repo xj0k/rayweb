@@ -20,7 +20,29 @@ function backupContent() {
     console.log('✅ Backed up public/api/');
   }
 
+  // Save git commit hash
+  try {
+    const gitHash = execSync('git rev-parse HEAD').toString().trim();
+    fs.writeFileSync(path.join(backupDir, 'git-commit.txt'), gitHash);
+    console.log(`✅ Saved git commit: ${gitHash.substring(0, 7)}`);
+  } catch (e) {
+    console.log('⚠️  Not a git repository');
+  }
+
+  // Create backup manifest
+  const manifest = {
+    timestamp,
+    files: {
+      content: fs.readdirSync(path.join(backupDir, 'content'), { recursive: true }),
+      api: fs.existsSync(path.join(backupDir, 'api'))
+        ? fs.readdirSync(path.join(backupDir, 'api'), { recursive: true })
+        : []
+    }
+  };
+  fs.writeFileSync(path.join(backupDir, 'manifest.json'), JSON.stringify(manifest, null, 2));
+
   console.log(`\n✅ Backup created: ${backupDir}`);
+  return backupDir;
 }
 
 backupContent();
