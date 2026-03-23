@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Rayson Xu's AI Skills</title>
+    <link>https://raysonxu.com/skills</link>
+    <description>实用 AI Prompt 技巧与工作流</description>
+    <language>zh-CN</language>
+    <lastBuildDate>Mon, 23 Mar 2026 01:15:36 GMT</lastBuildDate>
+    <atom:link href="https://raysonxu.com/feed-skills.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>需求文档生成器</title>
+      <link>https://raysonxu.com/skills#prd-generator</link>
+      <guid>https://raysonxu.com/skills#prd-generator</guid>
+      <pubDate>Wed, 18 Mar 2026 00:00:00 GMT</pubDate>
+      <description>给出产品功能描述，自动生成结构完整的 PRD 文档，包含背景、用户故事、功能详情、验收标准等核心模块。</description>
+      <category>产品管理</category>
+    </item>
+    <item>
+      <title>代码审查助手</title>
+      <link>https://raysonxu.com/skills#code-review</link>
+      <guid>https://raysonxu.com/skills#code-review</guid>
+      <pubDate>Tue, 10 Mar 2026 00:00:00 GMT</pubDate>
+      <description>粘贴代码，AI 从可读性、性能、安全性和最佳实践四个维度进行审查，给出具体改进建议。</description>
+      <category>软件工程</category>
+    </item>
+    <item>
+      <title>会议纪要提炼器</title>
+      <link>https://raysonxu.com/skills#meeting-notes</link>
+      <guid>https://raysonxu.com/skills#meeting-notes</guid>
+      <pubDate>Thu, 05 Mar 2026 00:00:00 GMT</pubDate>
+      <description>把原始会议记录或录音文字稿，提炼成结构化纪要：决策事项、行动项、待解决问题，一目了然。</description>
+      <category>效率工具</category>
+    </item>
+    <item>
+      <title>AI 写作教练</title>
+      <link>https://raysonxu.com/skills#writing-coach</link>
+      <guid>https://raysonxu.com/skills#writing-coach</guid>
+      <pubDate>Sat, 28 Feb 2026 00:00:00 GMT</pubDate>
+      <description>帮你改进文章的逻辑结构、表达清晰度和读者体验，不是帮你重写，而是指出具体问题并给出改进方向。</description>
+      <category>写作</category>
+    </item>
+  </channel>
+</rss>

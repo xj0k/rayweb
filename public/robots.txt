@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+
+# AI Agents welcome
+User-agent: GPTBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+Sitemap: https://raysonxu.com/sitemap.xml

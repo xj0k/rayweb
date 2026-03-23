@@ -1,0 +1,24 @@
+{
+  "site": {
+    "name": "Rayson Xu",
+    "url": "https://raysonxu.com",
+    "description": "资深软件工程师、产品团队负责人，专注 AI 内容与工具分享",
+    "topics": [
+      "AI",
+      "产品管理",
+      "软件工程",
+      "效率工具"
+    ],
+    "content_types": [
+      "blog",
+      "skills",
+      "projects"
+    ],
+    "last_updated": "2026-03-23T01:15:36.284Z"
+  },
+  "stats": {
+    "total_posts": 3,
+    "total_skills": 4,
+    "total_projects": 3
+  }
+}
