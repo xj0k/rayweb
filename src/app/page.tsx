@@ -7,9 +7,27 @@ export default function Home() {
   const skills = getAllSkills().slice(0, 3);
   const projects = getAllProjects().slice(0, 3);
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Rayson Xu',
+    url: 'https://raysonxu.com',
+    jobTitle: '产品团队负责人',
+    description: '资深软件工程师、产品团队负责人，专注 AI 内容与工具分享',
+    knowsAbout: ['AI', '产品管理', '软件工程', '效率工具'],
+    sameAs: [
+      'https://github.com/xj0k',
+    ],
+  };
+
   return (
-    <div>
-      <Hero />
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <div>
+        <Hero />
       <div className="max-w-3xl mx-auto px-6 space-y-16 pb-20">
         {/* Blog section */}
         <section>
@@ -50,6 +68,7 @@ export default function Home() {
           </div>
         </section>
       </div>
-    </div>
+      </div>
+    </>
   );
 }

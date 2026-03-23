@@ -12,8 +12,30 @@ export default function SkillsPage() {
 
   const categories = Array.from(new Set(skills.map((s) => s.category)));
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'AI Skills Collection',
+    description: '实用 AI Prompt 技巧与工作流',
+    itemListElement: skills.map((skill, index) => ({
+      '@type': 'HowTo',
+      position: index + 1,
+      name: skill.name,
+      description: skill.description,
+      step: skill.prompt ? [{
+        '@type': 'HowToStep',
+        text: skill.prompt,
+      }] : undefined,
+    })),
+  };
+
   return (
-    <div className="max-w-3xl mx-auto px-6 py-12">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <div className="max-w-3xl mx-auto px-6 py-12">
       <h1 className="text-3xl font-bold tracking-tight mb-2">AI Skills</h1>
       <p className="mb-10 text-base" style={{ color: "var(--muted)" }}>
         收集整理的实用 AI Prompt 技巧与工作流，持续更新
@@ -35,6 +57,7 @@ export default function SkillsPage() {
           </div>
         );
       })}
-    </div>
+      </div>
+    </>
   );
 }

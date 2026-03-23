@@ -20,8 +20,34 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const post = getPostBySlug(slug);
   if (!post) notFound();
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    abstract: post.excerpt,
+    datePublished: post.date,
+    author: {
+      '@type': 'Person',
+      name: 'Rayson Xu',
+      url: 'https://raysonxu.com/about',
+      jobTitle: '产品团队负责人',
+    },
+    keywords: post.tags.join(', '),
+    articleBody: post.content,
+    url: `https://raysonxu.com/blog/${post.slug}`,
+    publisher: {
+      '@type': 'Person',
+      name: 'Rayson Xu',
+    },
+  };
+
   return (
-    <div className="max-w-3xl mx-auto px-6 py-12">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <div className="max-w-3xl mx-auto px-6 py-12">
       <div className="mb-8">
         <div className="flex items-center gap-2 text-sm mb-4" style={{ color: "var(--muted)" }}>
           <span>{post.date}</span>
@@ -47,6 +73,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           {post.content}
         </ReactMarkdown>
       </article>
-    </div>
+      </div>
+    </>
   );
 }
