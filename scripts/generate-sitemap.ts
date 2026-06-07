@@ -32,7 +32,7 @@ function generateSitemap() {
   const posts = readMarkdownFiles<BlogPost>(path.join(process.cwd(), 'src/content/blog'));
   const skills = readMarkdownFiles<AISkill>(path.join(process.cwd(), 'src/content/skills'));
 
-  const urls = [
+  const urls: { loc: string; lastmod?: string; changefreq: string; priority: number }[] = [
     { loc: '/', changefreq: 'weekly', priority: 1.0 },
     { loc: '/blog', changefreq: 'daily', priority: 0.9 },
     { loc: '/skills', changefreq: 'weekly', priority: 0.9 },
