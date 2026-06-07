@@ -7,6 +7,7 @@ export interface BlogPost {
   readingTime: string;
   cover?: string;
   content: string;
+  hasEnglish?: boolean;
 }
 
 export interface AISkill {

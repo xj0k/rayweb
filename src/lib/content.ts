@@ -11,6 +11,14 @@ function getFiles(dir: string): string[] {
   return fs.readdirSync(dir).filter((f) => f.endsWith(".md") || f.endsWith(".mdx"));
 }
 
+function hasEnglishVersion(slug: string): boolean {
+  const enDir = path.join(contentDir, "blog/en");
+  return (
+    fs.existsSync(path.join(enDir, `${slug}.md`)) ||
+    fs.existsSync(path.join(enDir, `${slug}.mdx`))
+  );
+}
+
 export function getAllPosts(): BlogPost[] {
   const dir = path.join(contentDir, "blog");
   return getFiles(dir)
@@ -28,6 +36,7 @@ export function getAllPosts(): BlogPost[] {
         readingTime: rt.text,
         cover: data.cover,
         content,
+        hasEnglish: hasEnglishVersion(slug),
       } as BlogPost;
     })
     .sort((a, b) => (a.date < b.date ? 1 : -1));
@@ -49,6 +58,27 @@ export function getPostBySlug(slug: string): BlogPost | null {
     readingTime: rt.text,
     cover: data.cover,
     content,
+    hasEnglish: hasEnglishVersion(slug),
+  };
+}
+
+export function getEnglishPostBySlug(slug: string): BlogPost | null {
+  const dir = path.join(contentDir, "blog/en");
+  const filePath = [path.join(dir, `${slug}.mdx`), path.join(dir, `${slug}.md`)].find(fs.existsSync);
+  if (!filePath) return null;
+  const raw = fs.readFileSync(filePath, "utf-8");
+  const { data, content } = matter(raw);
+  const rt = readingTime(content);
+  return {
+    slug,
+    title: data.title ?? slug,
+    date: data.date ?? "",
+    excerpt: data.excerpt ?? "",
+    tags: data.tags ?? [],
+    readingTime: rt.text,
+    cover: data.cover,
+    content,
+    hasEnglish: true,
   };
 }
 

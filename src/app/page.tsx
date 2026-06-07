@@ -1,11 +1,11 @@
-import { getAllPosts, getAllSkills, getAllProjects } from "@/lib/content";
-import { Hero, PostCard, SkillCard, ProjectCard } from "@/components/Cards";
+import { getAllPosts } from "@/lib/content";
+import { PostCard } from "@/components/Cards";
 import Link from "next/link";
 
 export default function Home() {
   const posts = getAllPosts().slice(0, 3);
-  const skills = getAllSkills().slice(0, 3);
-  const projects = getAllProjects().slice(0, 3);
+  // const skills = getAllSkills().slice(0, 3);    // hidden: skills not ready
+  // const projects = getAllProjects().slice(0, 3); // hidden: projects not ready
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -27,7 +27,9 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <div>
+        {/* Hero — hidden: personal intro not ready
         <Hero />
+        */}
       <div className="max-w-3xl mx-auto px-6 space-y-16 pb-20">
         {/* Blog section */}
         <section>
@@ -42,7 +44,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Skills section */}
+        {/* Skills section — hidden: skills not ready
         <section>
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-xl font-bold tracking-tight">AI Skills</h2>
@@ -54,8 +56,9 @@ export default function Home() {
             {skills.map((skill, i) => <SkillCard key={skill.slug} skill={skill} index={i} />)}
           </div>
         </section>
+        */}
 
-        {/* Projects section */}
+        {/* Projects section — hidden: projects not ready
         <section>
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-xl font-bold tracking-tight">项目 & 想法</h2>
@@ -67,6 +70,7 @@ export default function Home() {
             {projects.map((project, i) => <ProjectCard key={project.slug} project={project} index={i} />)}
           </div>
         </section>
+        */}
       </div>
       </div>
     </>

@@ -7,9 +7,9 @@ import { motion } from "framer-motion";
 const links = [
   { href: "/", label: "首页" },
   { href: "/blog", label: "博客" },
-  { href: "/skills", label: "AI Skills" },
-  { href: "/projects", label: "项目" },
-  { href: "/about", label: "关于" },
+  // { href: "/skills", label: "AI Skills" },   // hidden: skills not ready
+  // { href: "/projects", label: "项目" },       // hidden: projects not ready
+  // { href: "/about", label: "关于" },          // hidden: about not ready
 ];
 
 export default function Nav() {

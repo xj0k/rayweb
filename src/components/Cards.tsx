@@ -34,6 +34,7 @@ export function Hero() {
           >
             阅读博客
           </Link>
+          {/* hidden: skills not ready
           <Link
             href="/skills"
             className="px-4 py-2 rounded-lg text-sm font-medium transition-colors border"
@@ -41,6 +42,7 @@ export function Hero() {
           >
             AI Skills
           </Link>
+          */}
         </motion.div>
       </motion.div>
     </section>
@@ -73,6 +75,16 @@ export function PostCard({ post, index }: { post: BlogPost; index: number }) {
               {tag}
             </span>
           ))}
+          {post.hasEnglish && (
+            <Link
+              href={`/blog/en/${post.slug}`}
+              onClick={(e) => e.stopPropagation()}
+              className="ml-auto px-2 py-0.5 rounded border text-xs font-medium hover:opacity-70 transition-opacity"
+              style={{ borderColor: "var(--accent)", color: "var(--accent)" }}
+            >
+              EN
+            </Link>
+          )}
         </div>
       </Link>
     </motion.article>

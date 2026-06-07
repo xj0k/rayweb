@@ -1,4 +1,4 @@
-import { getPostBySlug, getAllPosts } from "@/lib/content";
+import { getEnglishPostBySlug, getAllPosts } from "@/lib/content";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import ReactMarkdown from "react-markdown";
@@ -6,66 +6,38 @@ import remarkGfm from "remark-gfm";
 import Link from "next/link";
 
 export async function generateStaticParams() {
-  return getAllPosts().map((post) => ({ slug: post.slug }));
+  return getAllPosts()
+    .filter((post) => post.hasEnglish)
+    .map((post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = getEnglishPostBySlug(slug);
   if (!post) return {};
   return { title: post.title, description: post.excerpt };
 }
 
-export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function EnglishBlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = getEnglishPostBySlug(slug);
   if (!post) notFound();
 
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
-    headline: post.title,
-    abstract: post.excerpt,
-    datePublished: post.date,
-    author: {
-      '@type': 'Person',
-      name: 'Rayson Xu',
-      url: 'https://raysonxu.com/about',
-      jobTitle: '产品团队负责人',
-    },
-    keywords: post.tags.join(', '),
-    articleBody: post.content,
-    url: `https://raysonxu.com/blog/${post.slug}`,
-    publisher: {
-      '@type': 'Person',
-      name: 'Rayson Xu',
-    },
-  };
-
   return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      <div className="max-w-3xl mx-auto px-6 py-12">
+    <div className="max-w-3xl mx-auto px-6 py-12">
       <div className="mb-8">
         <div className="flex items-center gap-2 text-sm mb-4" style={{ color: "var(--muted)" }}>
           <span>{post.date}</span>
           <span>·</span>
           <span>{post.readingTime}</span>
-          {post.hasEnglish && (
-            <>
-              <span>·</span>
-              <Link
-                href={`/blog/en/${post.slug}`}
-                className="hover:opacity-70 transition-opacity"
-                style={{ color: "var(--accent)" }}
-              >
-                English →
-              </Link>
-            </>
-          )}
+          <span>·</span>
+          <Link
+            href={`/blog/${slug}`}
+            className="hover:opacity-70 transition-opacity"
+            style={{ color: "var(--accent)" }}
+          >
+            中文版本 →
+          </Link>
         </div>
         <h1 className="text-3xl font-bold tracking-tight mb-4" style={{ letterSpacing: "-0.02em" }}>
           {post.title}
@@ -86,7 +58,6 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           {post.content}
         </ReactMarkdown>
       </article>
-      </div>
-    </>
+    </div>
   );
 }
