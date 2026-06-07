@@ -65,7 +65,7 @@ function validateContent() {
       } catch (error) {
         console.error(`  ❌ ${post.slug}`);
         if (error instanceof z.ZodError) {
-          error.errors.forEach(err => {
+          error.issues.forEach(err => {
             console.error(`     - ${err.path.join('.')}: ${err.message}`);
           });
         }
@@ -87,7 +87,7 @@ function validateContent() {
       } catch (error) {
         console.error(`  ❌ ${skill.slug}`);
         if (error instanceof z.ZodError) {
-          error.errors.forEach(err => {
+          error.issues.forEach(err => {
             console.error(`     - ${err.path.join('.')}: ${err.message}`);
           });
         }
@@ -109,7 +109,7 @@ function validateContent() {
       } catch (error) {
         console.error(`  ❌ ${project.slug}`);
         if (error instanceof z.ZodError) {
-          error.errors.forEach(err => {
+          error.issues.forEach(err => {
             console.error(`     - ${err.path.join('.')}: ${err.message}`);
           });
         }
